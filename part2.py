@@ -9,8 +9,12 @@ if __name__ == '__main__':
     for l in open(path + 'business.json').readlines():
         d.append(json.loads(l))  # from json str to dict
     df = pd.DataFrame.from_records(d)
-    da = []
-    for business in df:
-      if df.state[business] == "AZ": 
-        da.append(df.city[business]
+    daz = pd.Series([x.city] for x in df.state["AZ"])
+    print(daz)
+    
+#     da = []
+#     for business in df:
+#       if df.state[business] == "AZ": 
+#         da.append(df.city[business]
+#     print(da)
     
