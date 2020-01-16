@@ -12,7 +12,7 @@ if __name__ == '__main__':
     print('Q1: ' + str(len(df.index)))
     print('Q2: ' + str(len(df[df.text.map(len) == df.text.map(len).max()])))
     user_reviews = df.groupby("user_id").count()[["text"]]
-    print('Q3: ' + str(len(user_reviews[user_reviews.text >= user_reviews.text.mean() + user_reviews.text.std()])))
+    print('Q3: ' + str(len(user_reviews[user_reviews.text >= user_reviews.text.mean() + 6 * user_reviews.text.std()])))
     biz_id = df['business_id'].value_counts().idxmax()
     d = []
     for l in open(path + 'business.json').readlines():
