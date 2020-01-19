@@ -17,6 +17,7 @@ def check_typos(x):
         n = diff.get_close_matches(x, cities)
         if n:
             return n[0]
+        return ''
     return x
 
 if __name__ == '__main__':
@@ -36,8 +37,8 @@ if __name__ == '__main__':
     daz = daz.apply(lambda x: check_typos(x))
 
     # print(daz[0:10])
-    print(len(daz))
-    print(len(daz.unique()))
+    # print(len(daz))
+    # print(len(daz.unique()))
 
 #     da = []
 #     for business in df:
@@ -46,4 +47,9 @@ if __name__ == '__main__':
 #     print(daz)
 
     df.update(daz)
+
+    indices = df[(df.city == 'AZ') | (df.city == 'Arizona') | ((df.state == 'AZ') & (df.city == ''))].index
+    df.drop(indices, inplace=True)
+
     print(df[df.state == 'AZ']['city'].unique())
+    print(len(df[df.state == 'AZ']['city'].unique()))
